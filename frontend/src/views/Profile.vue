@@ -1,17 +1,19 @@
 <template>
-    <div class="main-container" v-if="profile">
-        <info-card
-            :name="profile.person.name"
-            :professionalHeadline="profile.person.professionalHeadline"
-            :picture="profile.person.picture"
-            :location="profile.person.location"
-            :strengths="profile.strengths"
-        ></info-card>
-        <reputation-card></reputation-card>
-        <resume-card></resume-card>
-        <psycometrics-card></psycometrics-card>
-        <jobs-posted-card></jobs-posted-card>
-        
+    <div>
+        <div class="main-container" v-if="profile">
+            <info-card
+                :name="profile.person.name"
+                :professionalHeadline="profile.person.professionalHeadline"
+                :picture="profile.person.picture"
+                :location="profile.person.location"
+                :strengths="profile.strengths"
+            ></info-card>
+            <reputation-card></reputation-card>
+            <resume-card></resume-card>
+            <psycometrics-card></psycometrics-card>
+            <jobs-posted-card></jobs-posted-card>
+        </div>
+        <loader v-else></loader>
     </div>
 </template>
 
@@ -22,6 +24,7 @@ import ReputationCard from '../components/Profile/ReputationCard.vue'
 import ResumeCard from '../components/Profile/ResumeCard.vue'
 import PsycometricsCard from '../components/Profile/PsychometricsCard.vue'
 import JobsPostedCard from '../components/Profile/JobsPostedCard.vue'
+import Loader from '../components/Loader.vue'
 
 export default {
     data(){
@@ -41,6 +44,7 @@ export default {
         ResumeCard,
         PsycometricsCard,
         JobsPostedCard,
+        Loader
     },
 }
 
