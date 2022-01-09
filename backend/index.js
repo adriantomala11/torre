@@ -9,7 +9,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 const axios = require('axios');
-
+const port = 3000
 app.listen(process.env.PORT || port, () => console.log(`Server initialized on port ${port}`));
 
 app.post('/get-people/', function (req, res) {
