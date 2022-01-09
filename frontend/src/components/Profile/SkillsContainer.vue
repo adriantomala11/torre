@@ -39,7 +39,7 @@ export default {
     methods:{
         relatedPeople(skill){
             try{
-                this.$router.push(String('/people/'+skill.id+'/'))
+                this.$router.push(String('/people/?skill='+skill.name+'&'+'proficiency='+skill.proficiency))
             }catch{}
         }
     },

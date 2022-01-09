@@ -15,7 +15,7 @@
         <h4>{{name}}</h4>
         <p class="subtext1">{{professionalHeadline}}</p>
         <p class="subtext2">{{locationName}}</p>
-        <b-button class="mt-4 mb-4">See More</b-button>
+        <b-button class="mt-4 mb-4" @click="seeProfile(username)">See More</b-button>
     </div>
 </template>
 <script>
@@ -24,7 +24,7 @@ export default {
         name: String,
         professionalHeadline: String,
         picture: String,
-        locationName: Object,
+        locationName: String,
         strengths: Array,
         username: String
     },
@@ -35,6 +35,9 @@ export default {
     methods:{
         handleScroll (event) {
             this.overflow = this.overflow==='hidden' ? 'overlay' : 'hidden'
+        },
+        seeProfile(username){
+            this.$router.push(String('/profile/'+username+'/'))
         }
     }
 }

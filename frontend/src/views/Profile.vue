@@ -1,6 +1,6 @@
 <template>
-    <div class="main-container">
-        <info-card 
+    <div class="main-container" v-if="profile">
+        <info-card
             :name="profile.person.name"
             :professionalHeadline="profile.person.professionalHeadline"
             :picture="profile.person.picture"
@@ -30,7 +30,10 @@ export default {
         }
     },
     created(){
-        axios.post('get-profile/',{username:this.$route.params.username}).then(response=>this.profile=response.data).catch(error => console.log(error))
+        axios.post('get-profile/',{username:this.$route.params.username}).then(response=>{
+            this.profile=response.data
+        }).catch(error => console.log(error))
+
     },
     components:{
         InfoCard,

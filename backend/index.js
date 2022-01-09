@@ -16,7 +16,9 @@ app.listen(3000, () => {
 
 app.post('/get-people/', function (req, res) {
     var skill = req.body.skill
-    const  bodyFormData = {skll:{term:skill}};
+    var proficiency = req.body.proficiency
+    var bodyFormData = {skill:{term:skill, proficiency:proficiency}};
+    console.log(JSON.stringify(bodyFormData))
     axios({
         method: 'post',
         url: 'https://search.torre.co/people/_search/',

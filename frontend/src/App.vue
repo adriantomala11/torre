@@ -1,12 +1,31 @@
 <template>
   <div id="app">
+    <navbar :title="navbarTitle"></navbar>
     <router-view/>
   </div>
 </template>
 
+<script>
+import Navbar from './components/Layouts/Navbar.vue'
+
+export default {
+  data(){
+    return {
+      skill:null,
+      navbarTitle:'torre'
+    }
+  },
+  components:{
+    Navbar
+  }
+}
+</script>
+
 <style>
 body{
   overflow-x: overlay;
+  background-color: #272a2d !important;
+  min-height: 100vh;
 }
 
 body::-webkit-scrollbar {
