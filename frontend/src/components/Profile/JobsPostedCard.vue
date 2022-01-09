@@ -1,6 +1,7 @@
 <template>
     <div class="torre-card" :style="{'overflow':overflow}" @mouseenter="handleScroll()" @mouseleave="handleScroll()">
         <h4>Jobs Posted</h4>
+        <p>No jobs posted by this user.</p>
     </div>
 </template>
 <script>

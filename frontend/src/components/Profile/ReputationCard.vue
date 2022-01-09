@@ -1,6 +1,7 @@
 <template>
     <div class="torre-card" :style="{'overflow':overflow}" @mouseenter="handleScroll()" @mouseleave="handleScroll()">
         <h4>Reputation</h4>
+        <p>No reputation founded for this user.</p>
     </div>
 </template>
 <script>

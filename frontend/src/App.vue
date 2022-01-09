@@ -23,7 +23,7 @@ export default {
 
 <style>
 body{
-  overflow-x: overlay;
+  overflow: overlay;
   background-color: #272a2d !important;
   min-height: 100vh;
 }

@@ -15,13 +15,23 @@ app.listen(3000, () => {
 });
 
 app.post('/get-people/', function (req, res) {
-    var skill = req.body.skill
-    var proficiency = req.body.proficiency
-    var bodyFormData = {skill:{term:skill, proficiency:proficiency}};
-    console.log(JSON.stringify(bodyFormData))
+    var skill = req.body.skill;
+    var proficiency = req.body.proficiency;
+    var bodyFormData = {};
+    var url_;
+    if (skill && proficiency){
+        bodyFormData = {skill:{term:skill, proficiency:proficiency}};
+    }
+    if(req.body.after){
+        url_ = 'https://search.torre.co/people/_search/?after='+req.body.after 
+    }else if(req.body.before){
+        url_ = 'https://search.torre.co/people/_search/?before='+req.body.before 
+    }else{
+        url_ = 'https://search.torre.co/people/_search/'
+    }
     axios({
         method: 'post',
-        url: 'https://search.torre.co/people/_search/',
+        url: url_,
         data: JSON.stringify(bodyFormData),
         headers: {
             'Accept': 'application/json',
@@ -29,7 +39,7 @@ app.post('/get-people/', function (req, res) {
         }
         })
         .then((response) => {res.send(response.data)}) 
-        .catch(error => {res.send('Error') 
+        .catch(error => {res.send({status:'error'}) 
     })
 });
 
@@ -44,7 +54,7 @@ app.post('/get-profile/', function (req, res) {
         }
         })
         .then((response) => {res.send(response.data)}) 
-        .catch(error => {res.send('Error') 
+        .catch(error => {res.send({status:'error'}) 
     })
 });
 

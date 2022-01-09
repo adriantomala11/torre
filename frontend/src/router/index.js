@@ -20,6 +20,10 @@ const routes = [
     path: '/people/:id',
     name: 'People',
     component: PeopleGrid
+  },
+  {
+    path: '*',
+    redirect: '/people/'
   }
 ]
 

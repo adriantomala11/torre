@@ -1,7 +1,7 @@
 <template>
     <div class="people-grid-container">
-        <h4 class="mb-4 mt-2">Showing results for <b>{{$route.query.proficiency}}s</b> on "{{$route.query.skill}}"</h4>
-        <b-container class="bv-example-row">
+        <h4 v-if="$route.query.skill && people" class="mb-4 mt-2">Showing {{people.offset+1}}-{{people.offset+10}} of {{people.total}} results for <b style="color: #cddc39;">{{$route.query.proficiency}}s</b> on <b style="color: #cddc39;">"{{$route.query.skill}}"</b></h4>
+        <b-container class="bv-example-row" v-if="people">
             <b-row>
                 <b-col class="people-card-container" v-for="person in people.results" :key="person.username">
                     <people-card
@@ -15,7 +15,12 @@
                 </b-col>
             </b-row>
         </b-container>
-        
+        <div class="mb-5">
+            <div v-if="people" class="paginator">
+                <div class="paginator-btn" @click="previousPage()">Previous</div>
+                <div class="paginator-btn" @click="nextPage()" style="margin-left: 40px;">Next</div>
+            </div>
+        </div>
     </div>    
 </template>
 <script>
@@ -34,6 +39,20 @@ export default {
         axios.post('get-people/',{skill:this.$route.query.skill, proficiency:this.$route.query.proficiency}).then(response=>{
             this.people=response.data
         }).catch(error => console.log(error))
+    },
+    methods:{
+        nextPage(){
+            window.scrollTo(0,0);
+            axios.post('get-people/',{skill:this.$route.query.skill, proficiency:this.$route.query.proficiency, after:this.people.pagination.next}).then(response=>{
+                this.people=response.data;
+            }).catch(error => console.log(error))
+        },
+        previousPage(){
+            window.scrollTo(0,0);
+            axios.post('get-people/',{skill:this.$route.query.skill, proficiency:this.$route.query.proficiency, before:this.people.pagination.previous}).then(response=>{
+                this.people=response.data;
+            }).catch(error => console.log(error))
+        }
     }
 }
 </script>
@@ -45,5 +64,25 @@ export default {
 
     .people-card-container{
         padding-bottom: 40px;
+    }
+    
+    .paginator{
+        display: flex;
+        width: fit-content;
+        margin: auto;
+    }
+
+    .paginator-btn{
+        font-size: 18px;
+        font-weight: 700;
+        cursor: pointer;
+    }
+
+    .paginator-btn:hover{
+        color: #cddc39;
+    }
+
+    button:hover{
+        color: #cddc39 !important;
     }
 </style>
