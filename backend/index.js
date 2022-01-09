@@ -10,9 +10,7 @@ app.use(bodyParser.json());
 
 const axios = require('axios');
 
-app.listen(3000, () => {
- console.log("El servidor está inicializado en el puerto 3000");
-});
+app.listen(process.env.PORT || port, () => console.log(`Server initialized on port ${port}`));
 
 app.post('/get-people/', function (req, res) {
     var skill = req.body.skill;
