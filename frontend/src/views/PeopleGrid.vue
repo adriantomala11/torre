@@ -18,8 +18,8 @@
             </b-container>
             <div class="mb-5">
                 <div v-if="people" class="paginator">
-                    <div class="paginator-btn" @click="previousPage()">Previous</div>
-                    <div class="paginator-btn" @click="nextPage()" style="margin-left: 40px;">Next</div>
+                    <div v-if="people.pagination.previous" class="paginator-btn" @click="previousPage()">Previous</div>
+                    <div v-if="people.pagination.next" class="paginator-btn" @click="nextPage()" style="margin-left: 40px;">Next</div>
                 </div>
             </div>
         </div>
