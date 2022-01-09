@@ -1,7 +1,7 @@
 <template>
     <div class="torre-card" :style="{'overflow':overflow}" @mouseenter="handleScroll()" @mouseleave="handleScroll()">
         <h4>Resumé</h4>
-        <p>No resume founded for this user.</p>
+        <p>No resume found for this user.</p>
     </div>
 </template>
 <script>
